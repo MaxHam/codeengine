@@ -5,6 +5,11 @@ const app = express();
 
 app.use(cors());
 
+// print process.argv
+const args = process.argv.forEach(function (val, index, array) {
+   return `${index + ': ' + val}`;
+ });
+
 const bodyText = `
 . ___  __  ____  ____
 ./ __)/  \(    \(  __)
@@ -14,7 +19,8 @@ const bodyText = `
 (  __)(  ( \ / __)(  )(  ( \(  __)
 .) _) /    /( (_ \ )( /    / ) _)
 (____)\_)__) \___/(__)\_)__)(____)
-
+'\n'
+${args}
 `;
 
 app.get('/', (req, res) => {
