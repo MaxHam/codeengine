@@ -5,6 +5,8 @@ const app = express();
 
 app.use(cors());
 
+const testVars = ['Hello World!']
+
 // print process.argv
 process.argv.forEach(function (val, index, array) {
    console.log(`${index + ': ' + val}`);
@@ -20,6 +22,7 @@ const bodyText = `
 .) _) /    /( (_ \ )( /    / ) _)
 (____)\_)__) \___/(__)\_)__)(____)
 ${process.argv[0]}
+${testVars[0]}
 `;
 
 app.get('/', (req, res) => {
