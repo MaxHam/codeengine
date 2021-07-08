@@ -19,7 +19,7 @@ const bodyText = `
 (  __)(  ( \ / __)(  )(  ( \(  __)
 .) _) /    /( (_ \ )( /    / ) _)
 (____)\_)__) \___/(__)\_)__)(____)
-${process.argv.join('\n')}
+${process.argv[0]}
 `;
 
 app.get('/', (req, res) => {
