@@ -1,11 +1,17 @@
-document.getElementById("math-button").onclick = () => {
+document.getElementById("math-button").onclick = async() => {
     // send request
-    ajax({type: post, url:"/result", cache: false, dataType:"json", success: (response) => {
-        alert(response)
-    }, 
-    error: (data) => {
-        alert(`Something went wrong: ${data}`)
-    }})
+    const data = 'Request sent'
+    try {
+        const response = await fetch("/solve",{
+        method:'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(data)})
+   
+       alert(response.JSON)
+    }
+    catch (err) {
+        alert(`Something went wrong: ${err.JSON}`)
+    }
     
 };
 
