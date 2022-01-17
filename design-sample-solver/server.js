@@ -4,10 +4,11 @@ const path = require('path');
 const cors = require("cors");
 app.use(cors());
 
-const port = process.env.port || 8080;
+const port = process.env.port || 8081;
 
- app.get("/solve", async()=> {
-  res.json("Magic was sent from the solver app!");
+ app.post("/solve", async(req, res)=> {
+   console.log(res)
+   res.json("Magic was sent from the solver app!");
  })
 
  app.get('/',function(req,res){

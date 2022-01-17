@@ -11,10 +11,26 @@
     <div class="jumbotron"  style="padding:40px;">
       <h1>Hello!</h1>
       <p>Click the button below to solve a very difficult math problem</p>
-      <button id='math-button'>MAGIC</button>
+      <form id="form"  method="POST">
+        <input type='submit' id='math-button'>MAGIC</button>
+      </form>
       <p>RESULT: </p>
     </div>
   </div>
-  <script src="static/index.js"></script>
+  <script>$(document).ready(function () {
+   $(function() {
+    $('form').submit(function() {
+        $.ajax({
+            type: 'POST',
+            url: 'solve',
+            data:  'post',
+            success:function(response){
+  alert(response);
+ }
+        });
+        return false;
+    }); 
+})
+  })</script>
 </body>
 </html>

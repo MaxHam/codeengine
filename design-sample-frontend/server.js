@@ -1,15 +1,17 @@
-const express = require('express');
-const { request } = require('http');
+const express = require("express");
 const app = express();
-const path = require('path');
+const request = require("request");
+const path = require("path");
 const cors = require("cors");
+const bodyParser = require("body-parser")
 app.use(cors());
+app.use(bodyParser.urlencoded())
+app.use(bodyParser.json())
 
 
 
-app.use("/static", express.static('./js/'));
 const port = process.env.port || 8080;
-const solverURL = process.env.solverURL || null
+const solverURL = process.env.solverURL || "http://localhost:8081/solve"
 console.log(solverURL)
 
 
@@ -17,55 +19,30 @@ app.get('/',function(req,res){
    res.sendFile(path.join(__dirname+'/index.html'));
  });
 
- app.post("/solve", async()=> {
-    await request.post({
-      url: solverURL+"/solve",
+ app.post("/solve", async(req, res)=> {
+  //  console.log(res)
+  await request.post(
+    {
+      url: solverURL,
       gzip: true,
       agentOptions: {
         rejectUnauthorized: false
       }
     },
     function(error, resp, body) {
-      if(resp) {
-        console.log(resp);
-
-        console.log(body);
-      res.send(body);
-      }
-      else if (error) {
+      if (error) {
         console.log(error);
         res.status(400).send(error.message);
       }
       else{
-      console.log(body);
+      //console.log(body);
+      console.log(resp)
       res.send(body);
       }
-    })
+    }
+  )
  })
 
- app.get("/result", async(req, res) => {
-   req.pipe(
-     await request.get(
-      {
-        url: solverURL+"/result",
-        agentOptions: {
-          rejectUnauthorized: false
-        }
-      },
-      function(error, resp, body) {
-        if (error) {
-          console.log(error);
-          res.status(400).send(error.message);
-        }
-        else{
-        console.log(body);
-        res.send(body);
-        }
-      }
-    )
-  );
-
-});
 
 app.use(function(error, req, res, next) {
    res.status(500).send(error.message);
