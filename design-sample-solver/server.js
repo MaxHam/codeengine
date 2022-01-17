@@ -4,7 +4,7 @@ const path = require('path');
 const cors = require("cors");
 app.use(cors());
 
-const port = process.env.port || 8081;
+const port = process.env.port || 3001;
 
  app.post("/solve", async(req, res)=> {
    console.log(res)

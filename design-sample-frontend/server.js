@@ -11,7 +11,7 @@ app.use(bodyParser.json())
 
 
 const port = process.env.port || 8080;
-const solverURL = process.env.solverURL || "http://localhost:8081/solve"
+const solverURL = process.env.solverURL || "http://localhost:3001"
 console.log(solverURL)
 
 
@@ -23,7 +23,7 @@ app.get('/',function(req,res){
   //  console.log(res)
   await request.post(
     {
-      url: solverURL,
+      url: solverURL+"/solve",
       gzip: true,
       agentOptions: {
         rejectUnauthorized: false
