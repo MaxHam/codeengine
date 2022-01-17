@@ -9,7 +9,7 @@ app.use(cors());
 
 app.use("/static", express.static('./js/'));
 const port = process.env.port || 8081;
-const solverURL = process.env.solverURL
+const solverURL = process.env.solverURL || null
 console.log(solverURL)
 
 
