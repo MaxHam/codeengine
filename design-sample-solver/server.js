@@ -13,6 +13,10 @@ console.log(frontendURL)
   res.json("Magic was sent from the solver app!");
  })
 
+ app.get('/',function(req,res){
+  res.send('Solver works!');
+});
+
 
 app.use(function(error, req, res, next) {
    res.status(500).send(error.message);
